@@ -1,0 +1,105 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+section {
+  padding: 5px 15px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.navbar {
+ overflow: hidden;
+ background-color: #333;
+}
+
+.navbar a {
+ float: left;
+ color: #f2f2f2;
+ text-align: center;
+ padding: 8px 16px;
+ text-decoration: none;
+ font-size: 16px;
+}
+
+.navbar a:hover {
+ background-color: #ddd;
+ color: black;
+}
+
+.navbar a.active {
+ background-color: #095484;
+ color: white;
+}
+
+.field input, select, textarea {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.field input:hover, select:hover, textarea:hover {
+  outline: none;
+  border: 1px solid #095484;
+}
+
+
+.field p {
+  line-height: 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #0666a3;
+}
+
+button {
+  border: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #095484;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit-button button {
+  margin-top: 20px;
+  width: 120px;
+  padding: 10px;
+}
+
+.confirm-button button {
+  width: 100px;
+  padding: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+th {
+  font-weight: bold;
+  text-align: left;
+  padding: 16px;
+}
+
+td {
+  padding: 16px;
+}
+
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
