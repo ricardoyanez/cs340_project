@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS report;
 
 CREATE TABLE report (
 report_id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-report_email varchar(256) NOT NULL,
+report_email varchar(64) NOT NULL,
 report_date datetime NOT NULL,
 report_ip varchar(16) NOT NULL,
 PRIMARY KEY (report_id)
@@ -21,7 +21,7 @@ PRIMARY KEY (report_id)
 
 CREATE TABLE spam (
 spam_id int(11) NOT NULL,
-spam_subject varchar(256) NOT NULL,
+spam_subject varchar(64) NOT NULL,
 spam_header text NOT NULL,
 spam_body text NOT NULL,
 PRIMARY KEY (spam_id),
@@ -40,7 +40,7 @@ FOREIGN KEY (confirmation_id) REFERENCES report (report_id)
 CREATE TABLE delist (
 delist_id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
 delist_ip varchar(16) NOT NULL,
-delist_email varchar(256) NOT NULL,
+delist_email varchar(64) NOT NULL,
 delist_date datetime NOT NULL,
 PRIMARY KEY (delist_id)
 );
@@ -68,7 +68,7 @@ FOREIGN KEY (delist_id) REFERENCES delist (delist_id)
 CREATE TABLE admin (
 admin_id int(11) NOT NULL,
 admin_ip varchar(16) NOT NULL,
-admin_email varchar(256) NOT NULL,
+admin_email varchar(64) NOT NULL,
 PRIMARY KEY (admin_id),
 FOREIGN KEY (admin_id) REFERENCES delist (delist_id)
 );
