@@ -11,6 +11,7 @@ Course: CS 340 (Introduction to Databases)
     <title>Report and Delist Spam</title>
     <link rel="stylesheet" href="style.css" media="screen" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
   </head>
   <body>
 
@@ -23,6 +24,32 @@ Course: CS 340 (Introduction to Databases)
     </div>
 
 <?php
+
+if ( ($_SERVER['HTTP_REFERER'] == "https://cs340.calel.org/report") ) {
+  if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ( isset($_POST['g-recaptcha-response']) ) {
+      $response_string = $_POST['g-recaptcha-response'];
+      $my_secret="6LdYFWUUAAAAAPQvUavB-G0R8ETSz9Fsk3qs7_QA";
+      $user_ip_address=$_SERVER['REMOTE_ADDR'];
+      $output=shell_exec("curl 'https://www.google.com/recaptcha/api/siteverify?secret=$my_secret&response=$response_string&remoteip=$user_ip_address'");
+      $recaptcha=json_decode($output,true);
+      if ( !$recaptcha['success'] ) {
+        print "<section>";
+        print "<p>Only humans are allowed to use this site.</p>";
+        print "</section>";
+        exit();
+      }
+    }
+    if ( !isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['ip']) || empty($_POST['ip']) ||
+         !isset($_POST['subject']) || empty($_POST['subject']) || !isset($_POST['header']) || empty($_POST['header']) ||
+         !isset($_POST['body']) || empty($_POST['body']) ) {
+      print "<section>";
+      print "<p>All fields are required.</p>";
+      print "</section>";
+      exit();
+    }
+  }
+}
 
 $conn = mysqli_connect("localhost", "cs340_yanezr", "0735") or die(mysqli_error());
 mysqli_select_db($conn, "cs340_yanezr") or die(mysqli_error());

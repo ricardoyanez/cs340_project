@@ -11,6 +11,7 @@ Course: CS 340 (Introduction to Databases)
     <title>Report and Delist Spam</title>
     <link rel="stylesheet" href="style.css" media="screen" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
   </head>
   <body>
 
@@ -27,7 +28,7 @@ Course: CS 340 (Introduction to Databases)
       <form method="post" name"report" action="/ip">
         <div class="field">
           <p>Contact e-mail</p>
-          <input type="email" name="email" size="60">
+          <input type="email" name="email" size="64" maxlength="64">
         </div>
         <div class="field">
           <p>IP address</p>
@@ -35,7 +36,7 @@ Course: CS 340 (Introduction to Databases)
         </div>
         <div class="field">
           <p>Subject</p>
-          <input type="text" name="subject" size="60">
+          <input type="text" name="subject" size="64" maxlength="64">
         </div>
         <div class="field">
           <p>Header</p>
@@ -45,6 +46,8 @@ Course: CS 340 (Introduction to Databases)
           <p>Body</p>
           <textarea name="body" rows="10" cols="80"></textarea>
         </div>
+        <br>
+        <div class="g-recaptcha" data-sitekey="6LdYFWUUAAAAANf9WHj4SLY8-Jhw76mluZzU3o4K"></div>
         <br>
         <div class="submit-button">
           <button type="submit">Submit</button>&nbsp;&nbsp;
