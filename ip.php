@@ -37,6 +37,14 @@ if( isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['ip']) &&
   $header = mysqli_real_escape_string($conn, nl2br($_POST['header']));
   $body = mysqli_real_escape_string($conn, nl2br($_POST['body']));
 
+  // validate data
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    exit("<section>$email is not a valid email address</section>");
+  }
+  if ( !filter_var($report_ip, FILTER_VALIDATE_IP) ) {
+    exit("<section>$report_ip is not a valid IP address</section>");
+  }
+
   $datetime = date('Y-m-d H:i:s');
 
   // insert REPORT data
@@ -74,24 +82,28 @@ if( isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['ip']) &&
 print "<section>";
 print "<h1>IP Addresses</h1>";
 
-$sql = "SELECT report_id,report_date,report_ip FROM report";
+$sql = "SELECT report_id,report_email,report_date,report_ip FROM report";
 $search = mysqli_query($conn,$sql) or die(mysqli_error($conn));
 $match  = mysqli_num_rows($search);
 
 if ( $match > 0 ) {
+  print "<div class='list'>";
   print "<table>";
   print "<tr>";
   print "<th>Report ID</th>";
   print "<th>IP Address</th>";
+  print "<th>Report e-mail</th>";
   print "<th>Report Date</th>";
-  print "<th>Confirmation Hash</th>";
+  print "<th>Subject</th>";
   print "<th>Confirmation</th>";
+  print "<th><br></th>";
   print "</tr>";
 
   while ( $row = mysqli_fetch_array($search) ) {
     $report_id = mysqli_escape_string($conn, $row[0]);
-    $date = mysqli_escape_string($conn, $row[1]);
-    $report_ip = mysqli_escape_string($conn, $row[2]);
+    $report_email = mysqli_escape_string($conn, $row[1]);
+    $report_date = mysqli_escape_string($conn, $row[2]);
+    $report_ip = mysqli_escape_string($conn, $row[3]);
 
     $sql1 = "SELECT confirmation_hash,confirmation_flag FROM confirmation_report WHERE confirmation_id='".$report_id."'";
     $search1 = mysqli_query($conn,$sql1) or die(mysqli_error($conn));
@@ -103,19 +115,39 @@ if ( $match > 0 ) {
       }
     }
 
+    $sql1 = "SELECT spam_subject FROM spam WHERE spam_id='".$report_id."'";
+    $search1 = mysqli_query($conn,$sql1) or die(mysqli_error($conn));
+    $match1  = mysqli_num_rows($search1);
+    if ( $match1 > 0 ) {
+      while ( $row1 = mysqli_fetch_array($search1) ) {
+        $subject = mysqli_escape_string($conn, $row1[0]);
+      }
+    }
+
     print "<tr>";
     print "<td>".$report_id."</td>";
     print "<td>".$report_ip."</td>";
-    print "<td>".$date."</td>";
-    print "<td>".$hash."</td>";
+    print "<td>".$report_email."</td>";
+    print "<td>".$report_date."</td>";
+    print "<td>".$subject."</td>";
     if ( $flag ) {
       print "<td align='center'>&#10003;</td>";
+      print "<td><br></td>";
     }
     else {
       print "<td>";
-      print "<form method='post' name='confirm' action='/confirm_report'>";
+      print "<form method='post' name='confirm_report' action='/confirm_report'>";
       print "<div class='confirm-button'>";
       print "<button type='submit'>Confirm</button>";
+      print "</div>";
+      print "<input type='hidden' name='report_id' value='".$report_id."'>";
+      print "</form>";
+      print "</td>";
+
+      print "<td>";
+      print "<form method='post' name='delete_report' action='/delete_report'>";
+      print "<div class='delete-button'>";
+      print "<button type='submit'>Delete</button>";
       print "</div>";
       print "<input type='hidden' name='report_id' value='".$report_id."'>";
       print "</form>";
@@ -124,6 +156,7 @@ if ( $match > 0 ) {
     print "</tr>";
   }
   print "</table>";
+  print "</div>";
 }
 
 mysqli_close($conn);

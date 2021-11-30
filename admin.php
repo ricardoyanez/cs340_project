@@ -35,11 +35,13 @@ $search = mysqli_query($conn,$sql) or die(mysqli_error($conn));
 $match  = mysqli_num_rows($search);
 
 if ( $match > 0 ) {
+  print "<div class='list'>";
   print "<table>";
   print "<tr>";
   print "<th>Admin ID</th>";
   print "<th>IP Address</th>";
-  print "<th>Admin email</th>";
+  print "<th>Admin e-mail</th>";
+  print "<th><br></th>";
   print "</tr>";
 
   while ( $row = mysqli_fetch_array($search) ) {
@@ -51,9 +53,20 @@ if ( $match > 0 ) {
     print "<td>".$admin_id."</td>";
     print "<td>".$admin_ip."</td>";
     print "<td>".$admin_email."</td>";
+    print "<td>";
+    print "<form method='post' name='confirm' action='/update_admin'>";
+    print "<div class='confirm-button'>";
+    print "<button type='submit'>Update</button>";
+    print "</div>";
+    print "<input type='hidden' name='admin_id' value='".$admin_id."'>";
+    print "<input type='hidden' name='admin_email' value='".$admin_email."'>";
+    print "<input type='hidden' name='flag' value='1'>";
+    print "</form>";
+    print "</td>";
     print "</tr>";
   }
   print "</table>";
+  print "</div>";
 }
 
 mysqli_close($conn);

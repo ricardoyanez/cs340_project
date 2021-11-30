@@ -24,11 +24,12 @@ Course: CS 340 (Introduction to Databases)
 
     <section>
       <h1>Check Status of an IP Addresses</h1>
-      <form method="post" name="report" action="/search">
+      <form method="post" name="search" action="/search">
         <div class="field">
           <p>IP Address</p>
           <input type="text" name="ip" size="20">
         </div>
+        <br>
         <div class="submit-button">
           <button type="submit">Search</button>
         </div>
@@ -46,6 +47,7 @@ $match  = mysqli_num_rows($search);
 if ( $match > 0 ) {
   print "<section>";
   print "<h1>Delist Requests</h1>";
+  print "<div class='list'>";
   print "<table>";
   print "<tr>";
   print "<th>Delist ID</th>";
@@ -54,6 +56,7 @@ if ( $match > 0 ) {
   print "<th>Delist Date</th>";
   print "<th>Confirmation Hash</th>";
   print "<th>Confirmation</th>";
+  print "<th><br></th>";
   print "</tr>";
 
   while ( $row = mysqli_fetch_array($search) ) {
@@ -80,10 +83,11 @@ if ( $match > 0 ) {
     print "<td>".$hash."</td>";
     if ( $flag ) {
       print "<td align='center'>&#10003;</td>";
+      print "<td><br></td>";
     }
     else {
       print "<td>";
-      print "<form method='post' name='confirm' action='/confirm_delist'>";
+      print "<form method='post' name='confirm_delist' action='/confirm_delist'>";
       print "<div class='confirm-button'>";
       print "<button type='submit'>Confirm</button>";
       print "</div>";
@@ -91,10 +95,19 @@ if ( $match > 0 ) {
       print "<input type='hidden' name='delist_ip' value='".$delist_ip."'>";
       print "</form>";
       print "</td>";
-    }
+
+      print "<td>";
+      print "<form method='post' name='delete_delist' action='/delete_delist'>";
+      print "<div class='delete-button'>";
+      print "<button type='submit'>Delete</button>";
+      print "</div>";
+      print "<input type='hidden' name='delist_id' value='".$delist_id."'>";
+      print "</form>";
+      print "</td>";    }
     print "</tr>";
   }
   print "</table>";
+  print "<div>";
   print "</section>";
 }
 

@@ -15,6 +15,11 @@ if( isset($_POST['delist_id']) && !empty($_POST['delist_id']) AND isset($_POST['
   $delist_id = mysqli_escape_string($conn, $_POST['delist_id']);
   $delist_ip = mysqli_escape_string($conn, $_POST['delist_ip']);
 
+  // validate data
+  if ( !filter_var($delist_ip, FILTER_VALIDATE_IP) ) {
+    exit("<section>$delist_ip is not a valid IP address</section>");
+  }
+
   $datetime = date('Y-m-d H:i:s');
 
   // update confirmation

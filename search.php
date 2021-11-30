@@ -32,6 +32,11 @@ if( isset($_POST['ip']) && !empty($_POST['ip']) ) {
 
   $ip = mysqli_escape_string($conn, $_POST['ip']);
 
+  // validate data
+  if ( !filter_var($ip, FILTER_VALIDATE_IP) ) {
+    exit("<section>$ip is not a valid IP address</section>");
+  }
+
   $sql = "SELECT ip_id FROM ip WHERE ip_address='".$ip."' AND ip_listed='1'";
   $search = mysqli_query($conn,$sql) or die(mysqli_error($conn));
   $match  = mysqli_num_rows($search);
@@ -57,6 +62,7 @@ if( isset($_POST['ip']) && !empty($_POST['ip']) ) {
           $body = str_replace('\r\n','', $body);
 
           print "<section>";
+          print "<div class='list'>";
           print "<table>";
 
           print "<tr>";
@@ -81,6 +87,7 @@ if( isset($_POST['ip']) && !empty($_POST['ip']) ) {
           print "</tr>";
 
           print "</table>";
+          print "</div>";
           print "</section><br>";
         }
       }
@@ -89,14 +96,14 @@ if( isset($_POST['ip']) && !empty($_POST['ip']) ) {
     print "<form method='post' name='request' action='/request'>";
     print "<div class='field'>";
     print "<p>Contact Email</p>";
-    print "<input type='text' name='email' size='60'>";
-    print "</div>";
+    print "<input type='email' name='email' size='60'>";
+    print "</div><br>";
     print "<div class='field'>";
     print "<div class='submit-button'>";
     print "<button type='submit'>Delist</button>";
     print "</div>";
     print "<input type='hidden' name='ip' value='".$ip."'>";
-    print "</form>";
+    print "</form><br>";
     print "</section>";
 
   }

@@ -26,11 +26,11 @@ Course: CS 340 (Introduction to Databases)
       <h1>Report Spam</h1>
       <form method="post" name"report" action="/ip">
         <div class="field">
-          <p>Contact Email</p>
-          <input type="text" name="email" size="60">
+          <p>Contact e-mail</p>
+          <input type="email" name="email" size="60">
         </div>
         <div class="field">
-          <p>IP Address</p>
+          <p>IP address</p>
           <input type="text" name="ip" size="20">
         </div>
         <div class="field">
@@ -45,8 +45,10 @@ Course: CS 340 (Introduction to Databases)
           <p>Body</p>
           <textarea name="body" rows="10" cols="80"></textarea>
         </div>
+        <br>
         <div class="submit-button">
-          <button type="submit">Submit</button>
+          <button type="submit">Submit</button>&nbsp;&nbsp;
+          <button type="reset">Reset</button>
         </div>
       </form>
     </section>

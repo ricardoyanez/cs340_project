@@ -27,7 +27,8 @@ h1 {
  text-align: center;
  padding: 8px 16px;
  text-decoration: none;
- font-size: 16px;
+ font-size: 14px;
+ font-weight: bold;
 }
 
 .navbar a:hover {
@@ -74,32 +75,36 @@ button {
 }
 
 .submit-button button {
-  margin-top: 20px;
-  width: 120px;
-  padding: 10px;
-}
-
-.confirm-button button {
-  width: 100px;
+  width: 90px;
   padding: 5px;
 }
 
-table {
+.confirm-button button {
+  width: 90px;
+  padding: 5px;
+}
+
+.delete-button button {
+  width: 90px;
+  padding: 5px;
+}
+
+.list table {
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #ddd;
 }
 
-th {
+.list th {
   font-weight: bold;
   text-align: left;
-  padding: 16px;
+  padding: 12px;
 }
 
-td {
-  padding: 16px;
+.list td {
+  padding: 12px;
 }
 
-tr:nth-child(odd) {
+.list tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
