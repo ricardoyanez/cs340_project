@@ -11,6 +11,7 @@ Course: CS 340 (Introduction to Databases)
     <title>Report and Delist Spam</title>
     <link rel="stylesheet" href="style.css" media="screen" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
   </head>
   <body>
 
@@ -29,6 +30,8 @@ Course: CS 340 (Introduction to Databases)
           <p>IP Address</p>
           <input type="text" name="ip" size="20">
         </div>
+        <br>
+        <div class="g-recaptcha" data-sitekey="6Lcix2sdAAAAAE2A5jRH9BOGoFrwA_Ajh9SRxpHq"></div>
         <br>
         <div class="submit-button">
           <button type="submit">Search</button>

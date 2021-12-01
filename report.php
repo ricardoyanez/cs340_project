@@ -47,7 +47,7 @@ Course: CS 340 (Introduction to Databases)
           <textarea name="body" rows="10" cols="80"></textarea>
         </div>
         <br>
-        <div class="g-recaptcha" data-sitekey="6LdYFWUUAAAAANf9WHj4SLY8-Jhw76mluZzU3o4K"></div>
+        <div class="g-recaptcha" data-sitekey="6Lcix2sdAAAAAE2A5jRH9BOGoFrwA_Ajh9SRxpHq"></div>
         <br>
         <div class="submit-button">
           <button type="submit">Submit</button>&nbsp;&nbsp;
