@@ -18,19 +18,19 @@ if ( ($_SERVER['HTTP_REFERER'] == "https://cs340.calel.org/ip") ) {
       $report_id = mysqli_escape_string($conn, $_POST['report_id']);
 
       // delete confirmation
-      $sql = "DELETE from confirmation_report  WHERE confirmation_id='".$report_id."'";
+      $sql = "DELETE FROM confirmation_report  WHERE confirmation_id='".$report_id."'";
       mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
       // delete spam
-      $sql = "DELETE from spam WHERE spam_id='".$report_id."'";
+      $sql = "DELETE FROM spam WHERE spam_id='".$report_id."'";
       mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
       // delete ip
-      $sql = "DELETE from ip WHERE ip_id='".$report_id."'";
+      $sql = "DELETE FROM ip WHERE ip_id='".$report_id."'";
       mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
       // delete report
-      $sql = "DELETE from report WHERE report_id='".$report_id."'";
+      $sql = "DELETE FROM report WHERE report_id='".$report_id."'";
       mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
       // close DB connection
