@@ -24,7 +24,10 @@ Course: CS 340 (Introduction to Databases)
     <section>
       <h1>Report and Delist Spam</h1>
       <div class="home-description">
-        <p>The project is to create and provide a suitable database and web interface for Internet users to (1) report spam, and for administrators of email services to (2) delist a reported IP from a realtime blacklist (RBL). The spam report interface provides a few fields to be filled, a) the email address of the reporter, b) the header, c) the subject and d) the body of the spam message. The interface will also have a separate field to check if an IP address is listed or not, and provide the spam evidence against it if it is. From this point, an administrator may request a delisting of the IP address, whereby the administrator must provide an email address. The target blacklist typically has 10-15 spam reports per day, and some 5-10 delistings per day.</p>
+        <p>The project is to create and provide a suitable database and web interface for Internet users to (1) report spam, and for administrators of email services to (2) delist a reported IP from a realtime blacklist (RBL).</p>
+        <p>The spam report interface provides a few fields to be filled, a) the email address of the reporter, b) the header, c) the subject and d) the body of the spam message.</p>
+        <p>The interface will also have a separate field to check if an IP address is listed or not, and provide the spam evidence against it if is. From this point, an administrator may request a delisting of the IP address, whereby the administrator must provide an email address.</p>
+        <p>The target blacklist typically has 10-15 spam reports per day, and some 5-10 delistings per day.</p>
 
         <p><u>Procedure:</u></p>
         <div class="home-list">
