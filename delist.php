@@ -34,7 +34,8 @@ Course: CS 340 (Introduction to Databases)
         <div class="g-recaptcha" data-sitekey="6Lcix2sdAAAAAE2A5jRH9BOGoFrwA_Ajh9SRxpHq"></div>
         <br>
         <div class="submit-button">
-          <button type="submit">Search</button>
+          <button type="submit">Search</button>&nbsp;&nbsp;
+          <button type="reset">Reset</button>
         </div>
       </form>
     </section>
@@ -114,6 +115,7 @@ if ( $match > 0 ) {
   print "</section>";
 }
 
+// close DB connection
 mysqli_close($conn);
 
 ?>

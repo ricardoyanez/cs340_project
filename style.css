@@ -16,6 +16,20 @@ h1 {
   font-size: 24px;
 }
 
+.home-description p {
+  font-size: 16px;
+  min-width: 600px;
+  max-width: 800px;
+  text-align: justify;
+}
+
+.home-list ol {
+  font-size: 16px;
+  min-width: 500px;
+  max-width: 700px;
+  text-align: justify;
+}
+
 .navbar {
  overflow: hidden;
  background-color: #333;

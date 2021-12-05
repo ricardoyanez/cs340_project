@@ -69,7 +69,9 @@ if ( $match > 0 ) {
   print "</div>";
 }
 
+// close DB connection
 mysqli_close($conn);
+
 print "</section>";
 
 ?>
