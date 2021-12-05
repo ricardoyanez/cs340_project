@@ -34,6 +34,10 @@ Course: CS 340 (Introduction to Databases)
             <li><b>Delist:</b> A delist starts by searching the status of the IP in the Delist menu. If the IP is listed, a request to delist may be submitted. The administrator of the IP will need to confirm or optionally delete the request.</li>
           </ol>
         </div>
+
+        <p>This project is licenced under the GNU General Public License v3.0<br>
+        <a class="link" href="https://github.com/ricardoyanez/cs340_project" target="_blank">https://github.com/ricardoyanez/cs340_project</a>
+        </p>
       </div>
 
     </section>

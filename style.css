@@ -30,6 +30,17 @@ h1 {
   text-align: justify;
 }
 
+a.link {
+  color: #095484;
+  background: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #33f;
+  background: transparent;
+}
+
 .navbar {
  overflow: hidden;
  background-color: #333;
