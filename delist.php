@@ -59,7 +59,7 @@ if ( $match > 0 ) {
   print "<th>Admin email</th>";
   print "<th>Delist Date</th>";
   print "<th>Confirmation Hash</th>";
-  print "<th>Confirmation</th>";
+  print "<th align='center'>Confirmation</th>";
   print "<th><br></th>";
   print "</tr>";
 
@@ -87,7 +87,6 @@ if ( $match > 0 ) {
     print "<td>".$hash."</td>";
     if ( $flag ) {
       print "<td align='center'>&#10003;</td>";
-      print "<td><br></td>";
     }
     else {
       print "<td>";
@@ -99,15 +98,7 @@ if ( $match > 0 ) {
       print "<input type='hidden' name='delist_ip' value='".$delist_ip."'>";
       print "</form>";
       print "</td>";
-
-      print "<td>";
-      print "<form method='post' name='delete_delist' action='/delete_delist'>";
-      print "<div class='delete-button'>";
-      print "<button type='submit'>Delete</button>";
-      print "</div>";
-      print "<input type='hidden' name='delist_id' value='".$delist_id."'>";
-      print "</form>";
-      print "</td>";    }
+    }
     print "</tr>";
   }
   print "</table>";

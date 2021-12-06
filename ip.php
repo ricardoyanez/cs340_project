@@ -29,7 +29,8 @@ if ( ($_SERVER['HTTP_REFERER'] == "https://cs340.calel.org/report") ) {
   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if ( isset($_POST['g-recaptcha-response']) ) {
       $response_string = $_POST['g-recaptcha-response'];
-      $my_secret="6LdYFWUUAAAAAPQvUavB-G0R8ETSz9Fsk3qs7_QA"; // fake secret key
+      // fake secret key
+      $my_secret="6Lc6LdYFWUUAAAAAPQvUavB-G0R8ETSz9Fsk3qs7_QA";
       $user_ip_address=$_SERVER['REMOTE_ADDR'];
       $output=shell_exec("curl 'https://www.google.com/recaptcha/api/siteverify?secret=$my_secret&response=$response_string&remoteip=$user_ip_address'");
       $recaptcha=json_decode($output,true);
@@ -203,6 +204,7 @@ if ( $match > 0 ) {
   print "<th>IP Address</th>";
   print "<th>Subject</th>";
   print "<th>Listed</th>";
+  print "<th align='center'>Confirmation</th>";
   print "</tr>";
 
   while ( $row = mysqli_fetch_array($search) ) {
@@ -229,6 +231,15 @@ if ( $match > 0 ) {
       }
     }
 
+    $sql1 = "SELECT confirmation_hash,confirmation_flag FROM confirmation_report WHERE confirmation_id='".$report_id."'";
+    $search1 = mysqli_query($conn,$sql1) or die(mysqli_error($conn));
+    $match1  = mysqli_num_rows($search1);
+    if ( $match1 > 0 ) {
+      while ( $row1 = mysqli_fetch_array($search1) ) {
+        $flag = mysqli_escape_string($conn, $row1[1]);
+      }
+    }
+
     $prnt = 0;
     if ( $option == 'all') {
       $prnt = 1;
@@ -251,6 +262,21 @@ if ( $match > 0 ) {
       }
       else {
         print "<td align='center'>No</td>";
+      }
+
+      if ( $flag ) {
+        print "<td align='center'>&#10003;</td>";
+      }
+      else {
+        print "<td>";
+        print "<form method='post' name='confirm_report' action='/confirm_report'>";
+        print "<div class='confirm-button'>";
+        print "<button type='submit'>Confirm</button>";
+        print "</div>";
+        print "<input type='hidden' name='report_id' value='".$report_id."'>";
+        print "<input type='hidden' name='report_ip' value='".$report_ip."'>";
+        print "</form>";
+        print "</td>";
       }
       print "</tr>";
     }

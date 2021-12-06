@@ -30,7 +30,8 @@ if ( ($_SERVER['HTTP_REFERER'] == "https://cs340.calel.org/delist") ) {
   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if ( isset($_POST['g-recaptcha-response']) ) {
       $response_string = $_POST['g-recaptcha-response'];
-      $my_secret="6LdYFWUUAAAAAPQvUavB-G0R8ETSz9Fsk3qs7_QA"; // fake secret key
+      // fake secret key
+      $my_secret="6Lc6LdYFWUUAAAAAPQvUavB-G0R8ETSz9Fsk3qs7_QA";
       $user_ip_address=$_SERVER['REMOTE_ADDR'];
       $output=shell_exec("curl 'https://www.google.com/recaptcha/api/siteverify?secret=$my_secret&response=$response_string&remoteip=$user_ip_address'");
       $recaptcha=json_decode($output,true);
