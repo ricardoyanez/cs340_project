@@ -60,7 +60,6 @@ if ( $match > 0 ) {
   print "<th>Delist Date</th>";
   print "<th>Confirmation Hash</th>";
   print "<th align='center'>Confirmation</th>";
-  print "<th><br></th>";
   print "</tr>";
 
   while ( $row = mysqli_fetch_array($search) ) {
